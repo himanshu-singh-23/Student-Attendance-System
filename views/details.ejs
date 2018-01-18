@@ -1,0 +1,47 @@
+<% include ../Metadata/header %>
+	<div class="ui segment">
+		<table class="ui red table">
+			<thead>
+				<tr>
+					<th>Sr No.</th>
+					<th>Full Name</th>
+					<th>Registration No.</th>
+					<th>Attendance</th>
+				</tr>
+			</thead>
+			<tbody>
+			<% var i=1;%>
+			<% users.forEach(function(user){%>
+				<% var size=user.status.length; var present=0;%>
+				<% user.status.forEach(function(att){%>
+					<%if(att.state=='P'){%>
+						<%present+=1;}%>
+				<%});%>
+				<%var att =parseInt(present/size*100);%>
+				<tr>
+					<td>
+						<label><%=i%> </label>
+					</td>
+					<td >
+						<div class="ui transparent input">
+							<input type="text" name="user[name]" value="<%=formatTitle.capWords(user.fname);%> <%=formatTitle.capWords(user.lname);%>" readonly="true">
+						</div>
+					</td>
+					<td >
+						<div class="ui transparent input">
+							<input type="text" name="user[username]" value=<%=user.username%> readonly="true">
+						</div>
+					</td>
+					
+					<td>
+						<div class="ui transparent input">
+							<input type="text" name="user[attendance]" value="<%=att%> %" readonly="true">
+						</div>
+					</td>
+				</tr>
+				<%i+=1;%>
+			<%});%>
+			</tbody>
+		</table>
+	</div>
+<% include ../Metadata/footer %>

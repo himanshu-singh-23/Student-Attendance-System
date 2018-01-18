@@ -1,0 +1,66 @@
+<% include ../Metadata/header %>
+<div class="ui inverted segment container">
+	<form class="ui form" action="/addStudents" method="post">
+		<div class="ui centered grid green table">
+		<div class="">
+			
+		</div>
+		<div class="fields two column row">
+			<div class="field column required">
+				<label>First Name</label>	
+			</div>
+			<div class="field column required">
+				<input type="text" name="user[fname]" placeholder="First Name" required="true">			
+			</div>
+		</div>
+		<div class="fields two column row">
+			<div class="field column required">
+				<label>Last Name</label>	
+			</div>
+			<div class="field column required">
+				<input type="text" name="user[lname]" placeholder="First Name" required="true">			
+			</div>
+		</div>
+		<div class="fields two column row">
+			<div class="field column required">
+				<label>Registration Number</label>	
+			</div>
+			<div class="field column ">
+				<input type="text" name="user[username]" placeholder="Registration Number" required="true">		
+			</div>
+		</div>
+		<div class="fields two column row">
+			<div class="field column required">
+				<label>Contact Number</label>	
+			</div>
+			<div class="field column">
+				<input type="text" name="user[contact]" placeholder="Contact Number" required="true">		
+			</div>
+		</div>
+		<div class="fields two column row">
+			<div class="field column required">
+				<label>Email</label>	
+			</div>
+			<div class="field column">
+				<input type="text" name="user[email]" placeholder="abc@gmail.com" required="true">		
+			</div>
+		</div>
+		<div class="fields two column row">
+			<div class="field column">
+				<label>Role</label>	
+			</div>
+			<div class="field column">
+				<select class="ui  floating dropdown labeled search icon button menu" name="user[role]">
+					<option class="item" value="active">Active</option>
+					<option class="item" value="inactive" selected="true">Inactive</option>
+				</select>		
+			</div>
+		</div>
+		</div>
+		<div class="ui centered grid">
+			<input type="submit" value="S A V E" class="ui submit blue button">
+		</div>
+	</form>
+
+</div>
+<% include ../Metadata/footer %>
