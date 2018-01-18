@@ -13,6 +13,8 @@
 			<% var i=1;%>
 			<% users.forEach(function(user){%>
 				<% var size=user.status.length; var present=0;%>
+				<%if(size==0){%>
+					<%size=1;}%>
 				<% user.status.forEach(function(att){%>
 					<%if(att.state=='P'){%>
 						<%present+=1;}%>
