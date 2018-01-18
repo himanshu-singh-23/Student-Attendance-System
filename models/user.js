@@ -1,4 +1,5 @@
 var db=require('mongoose'),
+	passportLocalMongoose=require('passport-local-mongoose'),
 	status=require('./status');
 
 var userSchema=new db.Schema({
@@ -15,5 +16,5 @@ var userSchema=new db.Schema({
 	email:String,
 	date:{type:Date,default:Date.now}
 });
-
+userSchema.plugin(passportLocalMongoose);
 module.exports=db.model('user',userSchema);
