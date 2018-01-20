@@ -1,0 +1,37 @@
+<% include ../Metadata/header %>
+<div class="ui padded inverted segment container">
+	<div class="ui centered padded grid segment">
+	<div class="four column row" >
+		<div class="column">
+			<h1 class="ui red ribbon label massive">Sign In To Cypher</h1>
+		</div>
+	</div>
+    <div class="four column row">
+	  <form class="ui large form" action="/sign/in" method="post">
+	    <div class="fields">
+	      <div class="field">
+	        <label>Username</label>
+	        <input  type="text" name="username">
+	      </div>
+	    </div>
+	    <div class="fields">
+	      <div class="field">
+	        <label>Password</label>
+	        <input placeholder="*******" type="Password" name="password">
+	      </div>
+	    </div>
+	    <div class="fields">
+	      <div class="field">
+	      	<a href="#" class="ui blue basic mini label">Forgot Password?</a>
+	      </div>
+	    </div>
+	    <input type="submit" class="ui submit blue button" value="Sign In">
+	    <p class="ui blue">Or</p>
+	    <div class="field">
+	      	<a href="/sign/up" class="ui blue basic large label">Create new Account</a>
+	      </div>
+	  </form>
+	  </div>
+	</div>
+</div>
+<% include ../Metadata/footer %>

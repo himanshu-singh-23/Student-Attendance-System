@@ -7,18 +7,10 @@
 		</div>
 		<div class="fields two column row">
 			<div class="field column required">
-				<label>First Name</label>	
+				<label>Full Name</label>	
 			</div>
 			<div class="field column required">
-				<input type="text" name="user[fname]" placeholder="First Name" required="true">			
-			</div>
-		</div>
-		<div class="fields two column row">
-			<div class="field column required">
-				<label>Last Name</label>	
-			</div>
-			<div class="field column required">
-				<input type="text" name="user[lname]" placeholder="First Name" required="true">			
+				<input type="text" name="user[name]" placeholder="First Name" required="true">			
 			</div>
 		</div>
 		<div class="fields two column row">
@@ -43,6 +35,18 @@
 			</div>
 			<div class="field column">
 				<input type="text" name="user[email]" placeholder="abc@gmail.com" required="true">		
+			</div>
+		</div>
+		<div class="fields two column row">
+			<div class="field column">
+				<label>Gender</label>	
+			</div>
+			<div class="field column">
+				<select class="ui  floating dropdown labeled search icon button menu" name="user[gender]">
+					<option class="item" value="male" selected="true">Male</option>
+					<option class="item" value="female" >Female</option>
+					<option class="item" value="other" >other</option>
+				</select>		
 			</div>
 		</div>
 		<div class="fields two column row">

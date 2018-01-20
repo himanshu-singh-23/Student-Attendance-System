@@ -5,10 +5,10 @@ var users=require('./user'),
 
 router.get("/",function(req,res)
 {
-	users.find({},function(error,users)
+	users.find({role:'inactive'},function(error,users)
 	{
 		if(error) console.log(error);
-		else res.render('home',{users:users}); 
+		else res.render('attendance',{users:users}); 
 	});
 });
 

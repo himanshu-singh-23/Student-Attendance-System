@@ -1,48 +1,9 @@
 <% include ../Metadata/header %>
-
-<div class="ui segment">
-	<form class="ui form" action="/markAttendance/save" method="post">
-		<table class="ui orange table">
-			<thead>
-				<tr>
-					<th>Sr no.</th>
-					<th>Full Name</th>
-					<th>Registraion Number</th>
-					<th>Attendance status</th>
-				</tr>
-			</thead>
-			<tbody>
-			<% var i=1;%>
-			<% users.forEach(function(user){%>
-				<tr>
-					<td>
-						<label><%=i%> </label>
-					</td>
-					<td >
-						<div class="ui transparent input">
-							<input type="text" name="user[name]" value= "<%=formatTitle.capWords(user.fname);%> <%=formatTitle.capWords(user.lname);%>"readonly="true">
-						</div>
-					</td>
-					<td >
-						<div class="ui transparent input">
-							<input type="text" name="user[username]" value=<%=user.username%> readonly="true">
-						</div>
-					</td>
-					
-					<td>
-						<select name="user[status]" class="ui  floating dropdown labeled search icon button menu">
-							<option class="item" selected="true" value="A">Absent</option>
-							<option class="item" value="P">Present</option>
-						</select>
-					</td>
-				</tr>
-				<%i+=1;%>
-			<%});%>
-			</tbody>
-		</table> <br>
-		<div class="ui centered grid">
-			<input type="submit" value="S A V E" class="ui submit blue button">
-		</div>
+<div class="ui container segment">
+	<form method="post" action="/img" >
+		<input type="file" name="file1">
+		<img src="" width="200" style="display:none;" />
+		<input type="submit" value="Submit">
 	</form>
 </div>
 <% include ../Metadata/footer %>

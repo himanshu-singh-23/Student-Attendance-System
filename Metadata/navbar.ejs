@@ -1,8 +1,13 @@
-<div class="ui fixed inverted borderless menu">
-	<div class="ui container">
-		<div class="header item"><a href="#"><i class="cube icon"></i> Cypher</a></div>
-		<a class="item" href="/addStudents">Add</a>
-		<a class="item" href="/markAttendance">Mark Attendance</a>
-		<a class="item" href="/studentDetails">Details</a>
-	</div>
+<div class="ui inverted top fixed padded menu">
+	<div class="header item"><a href="/"><i class="cube icon"></i> Cypher</a></div>
+	<a class="item" href="/addStudents">Add</a>
+	<a class="item" href="/markAttendance">Mark Attendance</a>
+	<a class="item" href="/studentDetails">Details</a>
+	<%if(!user){%>
+	<a class="right item" href="/sign/in">Sign In</a>
+	<a class="item" href="/sign/up">Sign Up</a>
+	<%}else{%>
+	<div class="header right item">Welcome <%=formatTitle.capWords(user.name) %> !</div>
+	<a class="item" href="/sign/out">Sign Out</a>
+	<%}%>
 </div>

@@ -9,11 +9,10 @@ router.get('/',function(req,res)
 
 router.post('/',function(req,res)
 {
-	var user=req.body.user;
-	user.fname=user.fname.toLowerCase();
-	user.lname=user.lname.toLowerCase();
+	var user=new users(req.body.user);
+	user.name=user.name.toLowerCase();
 	user.email=user.email.toLowerCase();
-	users.create(user,function(error,user)
+	users.register(user,user.password,function(error,user)
 	{
 		if (error)console.log(error);
 		else res.redirect('/markAttendance');

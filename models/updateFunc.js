@@ -12,7 +12,7 @@ function update(User,callback)
 				if(error) callback(false);
 				else
 				{
-					attend.create({state:Status[i++]},function(error,state)
+					attend.create({state:Status[i++],user:user._id},function(error,state)
 					{
 						if (error) {console.log(error);}
 						else
@@ -23,7 +23,7 @@ function update(User,callback)
 								if (error) callback(false);
 							});
 						}
-					})				
+					});				
 				}
 			});	
 	});

@@ -3,8 +3,7 @@ var db=require('mongoose'),
 	status=require('./status');
 
 var userSchema=new db.Schema({
-	fname:String,
-	lname:String,
+	name:String,
 	username:String,
 	password:{type:String,default:"123456789a"},
 	role:String,
@@ -14,6 +13,7 @@ var userSchema=new db.Schema({
 	}],
 	contact:String,
 	email:String,
+	gender:String,
 	date:{type:Date,default:Date.now}
 });
 userSchema.plugin(passportLocalMongoose);

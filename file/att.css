@@ -5,3 +5,11 @@ body,html{
 .ui.segment{
 	margin-top: 35px;
 }
+/*ui blue basic large label*/
+.ui.blue.basic.mini.label{
+	border-width: 0;
+}
+
+.ui.form .field input{
+	max-height: 33px;
+}
