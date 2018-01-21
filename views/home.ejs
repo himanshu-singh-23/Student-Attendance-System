@@ -1,9 +1,31 @@
 <% include ../Metadata/header %>
-<div class="ui container segment">
-	<form method="post" action="/img" >
-		<input type="file" name="file1">
-		<img src="" width="200" style="display:none;" />
-		<input type="submit" value="Submit">
-	</form>
+<img src="./12108046_705727642893900_135692455940057433_n.jpg" alt="image not found" class="ui centered rounded image">
+<div class="ui container">
+	<div class="ui centered grid text">"<%=quote.quote%>"</div>
+	<div class="ui centered grid author"><%=quote.author%></div>
 </div>
+<div class="ui container">
+	<%blogs.forEach(function(blog){%>
+		<h4 class="ui horizontal divider header"><i class="open envelope outline icon"></i></h4>
+		<div class="fields">
+			<div class="field">
+				<h4><%=blog.title%></h4>
+			</div>
+			<div class="field"> 
+				<img src=<%=blog.imgUri%>
+				class="ui centered rounded image">
+			</div>
+			<div class="field">
+				<h5 class="text"><%- blog.content.substring(0,100); %> ..........</h5>
+			</div>
+			<div class="field">
+				<label class="ui blue basic label small" style="border-width:0;">Himanshu Singh</label>
+			</div>
+			<div class="field">
+				<label class="date"><%=blog.date.toDateString()%></label>
+			</div>
+		</div>
+	<%	});	%>	
+</div>
+<h4 class="ui horizontal divider header"><i class="window maximize icon"></i></h4>
 <% include ../Metadata/footer %>

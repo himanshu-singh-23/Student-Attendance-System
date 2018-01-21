@@ -3,7 +3,6 @@ var express=require('express'),
 	users=require('./models/user'),
 	blogs=require('./models/blog'),
 	db=require('mongoose'),
-	fs=require('fs'),
 	session=require('express-session'),
 	passport=require('passport'),
 	LocalStrategy=require('passport-local'),
@@ -14,7 +13,7 @@ var express=require('express'),
 app.set('view engine','ejs');
 app.use(body.urlencoded({extended:true}));
 app.use(express.static('file'));
-db.connect('mongodb://localhost/image');
+// db.connect('mongodb://localhost/image');
 // db.connect('mongodb://localhost/cypher');
 db.connect('mongodb://devil:devil123@ds261527.mlab.com:61527/cypher');	
 
@@ -47,35 +46,18 @@ app.use(function(req,res,next)
 	next();
 });
 
-app.get('/',function(req,res)
-{
-	res.render('home');
-});
-
-
-
 var attendanceRoute=require('./models/attendance'),
 	newRoute=require('./models/addstudent'),
 	signRoute=require('./models/sign'),
 	detailRoute=require('./models/details');
+	postRoute=require('./models/post');
 
 app.use('/markAttendance',attendanceRoute);
 app.use('/addStudents',newRoute);
 app.use('/studentDetails',detailRoute);
 app.use('/sign',signRoute);
+app.use('/',postRoute);
 
-
-app.post('/img',function(req,res)
-{
-	a=new blogs();
-	a.img.data = fs.readFileSync(req.body.file1);
-	a.img.contentType = 'image/png';
-	a.save(function(error,image)
-	{
-		console.log(error,image);
-	});
-	res.redirect('/');
-});
 
 app.get('*',function(req,res)
 {

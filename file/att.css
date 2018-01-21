@@ -2,8 +2,8 @@ body,html{
 	height: 100%;
 	width: 100%;
 }
-.ui.segment{
-	margin-top: 35px;
+.ui{
+	margin-top: 40px;
 }
 /*ui blue basic large label*/
 .ui.blue.basic.mini.label{
@@ -12,4 +12,5 @@ body,html{
 
 .ui.form .field input{
 	max-height: 33px;
+	font-size: 20px;
 }

@@ -1,0 +1,47 @@
+<% include ../Metadata/header %>
+<div class="ui container">
+	<div class="ui blue ribbon label massive">Add New Content!!</div>
+	<form method="post" action="/newPost" enctype="multipart/form-data" class="ui massive segment form">
+		<div class="ui grid">
+			<div class="four column row  fields">
+				<label class="column required"><strong>Title:</strong></label>
+				<div class="column"></div>
+				<div class="six wide column field">
+					<input type="text" name="blog[title]" placeholder="Title" required="true">
+				</div>
+			</div>
+			<div class="four column row fields">
+
+				<label class="column required"> <strong> Content </strong><i class="icon pointing right"></i></label>
+				<div class="column"></div>
+				<div class="eight wide column field">
+					<textarea name="blog[content]" style="max-height:1000;max-width:500;" placeholder="Write Your Quotes." required="true"></textarea>
+				</div>
+
+			</div>
+			<div class="four column row fields">
+				<label class="column required"> <strong>Image Url </strong><i class="file image outline icon"></i></label>
+				<div class="column"></div>
+				<div class="six wide column field">
+					<input type="text" name="blog[imgUri]" placeholder="http://xyz.com">
+				</div>
+			</div>
+			<p class="ui">Or</p>
+			<div class="four column row fields">
+				<label class="column"> <strong>Image</strong><i class="file image outline icon"></i></label>
+				<div class="column"></div>
+				<div class="six wide column">
+					<input type="file" name="img" style="border-width:0;margin-top:-20px;">
+				</div>
+			</div>
+		</div>
+		<div class="ui centered grid">
+			<div class="four column row">
+				<div class="column">
+					<input type="submit" value="Submit" class="ui blue button">
+				</div>
+			</div>
+		</div>
+	</form>
+</div>
+<% include ../Metadata/footer %>

@@ -1,14 +1,15 @@
 var db=require('mongoose');
 
 var blogSchema=new db.Schema({
-	// title:String,
+	title:String,
 	date:{type:Date,default:Date.now},
-	// content:String,
+	content:String,
 	img: { data: Buffer, contentType: String },
-	// author:{
-	// 	type:db.Schema.Types.ObjectId,
-	// 	ref:'user'
-	// }
+	author:{
+		type:db.Schema.Types.ObjectId,
+		ref:'user'
+	},
+	imgUri:String
 });
 
 module.exports=db.model('blog',blogSchema);
