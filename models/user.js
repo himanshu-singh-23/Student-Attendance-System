@@ -3,7 +3,7 @@ var db=require('mongoose'),
 	status=require('./status');
 
 var userSchema=new db.Schema({
-	name:String,
+	fname:String,
 	username:String,
 	password:{type:String,default:"123456789a"},
 	role:String,
