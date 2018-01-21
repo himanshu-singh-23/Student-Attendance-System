@@ -1,5 +1,7 @@
 var users=require('./user'),
 	express=require('express'),
+	{isLoggedIn}=require('./middleware'),
+	{admin}=require('./middleware'),
 	router=express.Router({mergeParams:true});
 
 router.get('/',function(req,res) {

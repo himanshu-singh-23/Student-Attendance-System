@@ -1,6 +1,7 @@
 var express=require('express'),
 	blogs=require('./blog'),
 	fs=require('fs'),
+	{isLoggedIn}=require('./middleware'),
 	fse=require('fs-extra'),
 	Datauri = require('datauri'),
 	multer = require('multer'),
@@ -20,15 +21,16 @@ var quotes=[{
 router.get('/',function(req,res)
 {
 
-	blogs.find({},function(error,blogs)
+	blogs.find({}).populate('author').exec(function(error,blogs)
 	{
 		if (error) {console.log(error)}
 		else res.render('home',{blogs:blogs,quote:quotes[Math.floor(Math.random() * 2)]});
 	});
 })
-router.post('/newPost',upload.any(),function(req,res)
+router.post('/newPost',[isLoggedIn,upload.any()],function(req,res)
 {
 	a=new blogs(req.body.blog);
+	a.author=req.user._id;
 	if(req.files.length)
 	{
 		var type='.';
@@ -49,7 +51,7 @@ router.post('/newPost',upload.any(),function(req,res)
 		}
 	});
 });
-router.get('/newPost',function(req,res)
+router.get('/newPost',isLoggedIn,function(req,res)
 {
 	res.render('addBlog');
 });

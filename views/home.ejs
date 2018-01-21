@@ -19,7 +19,7 @@
 				<h5 class="text"><%- blog.content.substring(0,100); %> ..........</h5>
 			</div>
 			<div class="field">
-				<label class="ui blue basic label small" style="border-width:0;">Himanshu Singh</label>
+				<label class="ui blue basic label small" style="border-width:0;"><%=formatTitle.capWords(blog.author.name)%></label>
 			</div>
 			<div class="field">
 				<label class="date"><%=blog.date.toDateString()%></label>

@@ -32,7 +32,7 @@ router.post('/up',function(req,res)
 	users.register(user,user.password,function(error,user)
 	{
 		if(error)console.log(error);
-		else res.redirect('/');
+		else res.redirect('/sign/in');
 	});
 });
 

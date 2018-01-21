@@ -1,13 +1,15 @@
 var users=require('./user'),
 	express=require('express'),
+	{isLoggedIn}=require('./middleware'),
+	{admin}=require('./middleware'),
 	router=express.Router({mergeParams:true});
 
-router.get('/',function(req,res)
+router.get('/',[isLoggedIn,admin],function(req,res)
 {
 	res.render('add');
 });
 
-router.post('/',function(req,res)
+router.post('/',[isLoggedIn,admin],function(req,res)
 {
 	var user=new users(req.body.user);
 	user.name=user.name.toLowerCase();
