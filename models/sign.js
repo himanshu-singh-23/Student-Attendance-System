@@ -9,7 +9,7 @@ router.post('/in', function(req, res, next) {
     if (!user) { return res.redirect('/sign/in'); }
     req.logIn(user, function(err) {
       if (err) { return next(err); }
-      return res.redirect('/markAttendance');
+      return res.redirect('/');
     });
   })(req, res, next);
 });
@@ -32,7 +32,7 @@ router.post('/up',function(req,res)
 	users.register(user,user.password,function(error,user)
 	{
 		if(error)console.log(error);
-		else res.redirect('/markAttendance');
+		else res.redirect('/');
 	});
 });
 
