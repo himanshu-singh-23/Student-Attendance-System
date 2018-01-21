@@ -4,7 +4,7 @@ var express=require('express'),
 	fse=require('fs-extra'),
 	Datauri = require('datauri'),
 	multer = require('multer'),
-	upload=multer({ dest: '../uploads/'}),
+	upload=multer({ dest: '/uploads/'}),
 	router=express.Router({mergeParams:true});
 	datauri = new Datauri();
 
