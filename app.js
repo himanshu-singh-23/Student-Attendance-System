@@ -7,7 +7,6 @@ var express=require('express'),
 	methodOverride=require('method-override'),
 	passport=require('passport'),
 	LocalStrategy=require('passport-local'),
-	redis=require('redis'),
 	app=express();
 
 
