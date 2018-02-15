@@ -1,0 +1,14 @@
+<%comment.replys.forEach(function(reply){%>
+  <a class="avatar">
+      <i class="icon big spy"></i>
+    </a>
+    <div class="content">
+      <a class="author" href="/<%=blog.author.username%>" ><%=formatTitle.capWords(reply.author.name)%></a>
+      <div class="metadata">
+        <span class="date"><%=moment(reply.date).startOf('sec').fromNow()%></span>
+      </div>
+      <div class="text">
+        <%=reply.content%>
+      </div>
+    </div>
+<%})%>

@@ -1,17 +1,37 @@
-<div class="ui inverted top fixed padded menu">
-	<div class="header item"><a href="/"><i class="cube icon"></i> Cypher</a></div>
-	<% if(user && user.role=='active'){%>
-	<a class="item" href="/addStudents">Cypher Member</a>
-	<a class="item" href="/markAttendance">Mark Attendance</a>
-	<a class="item" href="/studentDetails">Details</a>
-	<%}else if(user){%>
-	<a class="item" href="/newPost">Add Post</a>
-	<%}%>
-	<%if(!user){%>
-	<a class="right item" href="/sign/in">Sign In</a>
-	<a class="item" href="/sign/up">Sign Up</a>
-	<%}else{%>
-	<div class="header right item">Welcome <%=formatTitle.capWords(user.name) %> !</div>
-	<a class="item" href="/sign/out">Sign Out</a>
-	<%}%>
-</div>
+<nav class='navbar navbar-inverse navbar-fixed-top'>
+	<div class='container-fluid'>
+		<div class='navbar-header'>
+			<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#menu" aria-expanded="false">
+		    <span class="sr-only">Toggle navigation</span>
+		    <span class="icon-bar"></span>
+		    <span class="icon-bar"></span>
+		    <span class="icon-bar"></span>
+		  </button>
+			<a class="navbar-brand" href="/" style="color:#E79E1F;"><i class="cube orange icon"></i> Cypher <sup style="color:yellow;">Beta</sup></a>
+		</div>
+		<div class='collapse navbar-collapse' id='menu'>
+			<ul class='nav navbar-nav '>
+				<% if(user && (user.role=='active'||user.role=='admin')){%>
+						<li><a href="/addStudents"><i class="outline cubes green icon"></i>Cypher Member</a></li>
+						<li><a href="/markAttendance"><i class="columns violet  icon"></i> Mark Attendance</a></li>
+						<li><a href="/studentDetails"><i class="grid layout violet icon"></i>Details</a></li>
+						<%}if(user){%>
+						<li><a href="/newPost"><i class="plus green icon"></i>Add Post</a></li>
+						<li><a href="/leaderboard"><i class="signal blue icon"></i>Leaderboard</a></li>
+					<%}%>
+					<%if(user && user.role=='inactive'){%>
+						<li><a href="/studentDetails/my/<%=user._id%>"><i class="outline grid layout green icon">My Attendance</a></li>
+				<%}%>
+			</ul>
+			<ul class='nav navbar-nav navbar-right '>
+				<%if(!user){%>
+					<li><a  href="/sign/in"><i class="sign in green  icon"></i> Sign In</a></li>
+					<li><a  href="/sign/up"><i class="add user yellow icon"></i> Sign Up</a></li>
+				<%}else{%>
+					<li><a href="/<%=user.username%>"><i class="icon blue user"></i>Welcome <%=formatTitle.capWords(user.name) %> !</a></li>
+					<li><a  href="/sign/out"><i class="sign red out icon"></i> Sign Out</a></li>
+				<%}%>
+			</ul>
+		</div>
+	</div>
+</nav>

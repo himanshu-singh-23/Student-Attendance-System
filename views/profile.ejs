@@ -1,0 +1,237 @@
+<% include ../Metadata/header %>
+<div class="ui container" style="margin-top:43px;align:left;">
+	<div class="ui fluid image">
+	<%if(User){%>
+		<img src="<%=User.coverImg%>" style="width:100%;height:30rem;" id="coverimage1">
+	<%}%>
+	<%if(user && User && user.id==User.id){%>
+	<input type="file" name="coverImg" id='cover' style="height:0px;width:0;opacity:0;" accept="image/*">
+		<label for="cover">
+			<figure id="coverPic" class="ui basic red bottom right attached label"><i class="camera icon"></i></figure>
+		</label>
+	<%}%>
+	</div>
+</div>
+<div class="ui container" style="margin-top:-16em;align:left;">
+		<div class="ui fluid image">
+		<%if (User) {%>
+			<img src="<%=User.profileImg%>" class="ui medium rounded small image" style="width:19em;height:19em;" id="profileimage1">
+		<%}%>
+		<%if(user && User && user.id==User.id){%>
+			<input type="file" name="fd" id="profile" style="height:0px;width:0;opacity:0;" accept="image/*">
+			<label for="profile">
+				<figure name="profilePic" class="ui basic horizontal red bottom left attached label"><i class="camera icon"></i></figure>
+			</label>
+		<%}%>
+		</div>
+</div>
+<div class="ui container">
+	<%if(User){%>
+		<h1 style="margin-left:10px;"><%=formatTitle.capWords(User.name)%></h1>
+	<%}%>
+	<%if(User&&User.about){%>
+		<p><%-User.about%></p>
+	<%}%>
+	<%if(user && User && user.id==User.id){%>
+	<div class="inline fields">
+		<h3>User Details</h3>
+		<p style="text-align:right; margin-top:-3rem;"><button name="edit" value="userEdit" class="ui circular twitter  icon button" ><i class="edit big icon"></i></button></p>
+	</div>
+	<div class="ui blue table"></div>
+	<div class="ui large form" id="userEdit">
+		<form class="edit" method="post" action="/<%=User._id%>?_method=PUT">
+			<div class="fields">
+				<div class="inline field ">
+					<label class="ui  label basic" style="border-width:0;">Username</label>
+					<input type="text" name="user[username]" value="<%=User.username%>" >
+				</div>
+			</div>
+			<div class="fields">
+				<div class="inline field ">
+					<label class="ui  label basic" style="border-width:0;">Name</label>
+					<input type="text" name="user[name]" value="<%=formatTitle.capWords(User.name)%>" >
+				</div>
+			</div>
+			<div class="fields">
+				<div class="inline field ">
+					<label class="ui  label basic" style="border-width:0;">Bio</label>
+					<textarea type="text" name="user[about]" cols="50rem"><%=User.about%></textarea>
+				</div>
+			</div>
+			<div class="fields">
+				<div class="inline field ">
+					<label class="ui  label basic" style="border-width:0;">Gender</label>
+					<select name="user[gender]">
+						<option value="male" <%if(User.gender=='male'){%>selected="true"<%}%>>Male</option>
+						<option value="female" <%if(User.gender=='female'){%>selected="true"<%}%>>Female</option>
+						<option value="others" <%if(User.gender=='others'){%>selected="true"<%}%>>Others</option>
+					</select>
+				</div>
+			</div>
+			<div class="fields">
+				<div class="inline field ">
+					<label class="ui  label basic" style="border-width:0;">College Registration Number</label>
+					<input type="text" name="user[reg_no]" value="<%=User.reg_no%>" >
+				</div>
+			</div>
+			<div class="fields">
+				<div class="inline field ">
+					<label class="ui  label basic" style="border-width:0;">Date Of Birth</label>
+					<input type="date" name="user[dob]" value="<%=moment(User.dob).format('YYYY-MM-DD')%>" max="2002-12-31" min="1900-01-01">
+				</div>
+			</div>
+	</div>
+	<div class="inline fields">
+		<h3>Address</h3>
+		<p style="text-align:right; margin-top:-2.5em;"><button name="edit" value="addEdit" class="ui circular google plus  icon button" ><i class="edit big icon"></i></button></p>
+	</div>
+	<div class="ui orange table"></div>
+	<div class="ui large form disp" id="addEdit">
+			<div class="fields">
+				<div class="inline field ">
+					<label class="ui  label basic" style="border-width:0;">Address:</label>
+					<textarea name="user[address]" cols="50em"><%=User.address%></textarea>
+				</div>
+			</div>
+			<div class="fields">
+				<div class="inline field ">
+					<label class="ui  label basic" style="border-width:0;">Pincode</label>
+					<input type="text"name="user[pincode]" value="<%=User.pincode%>">
+				</div>
+			</div>
+			<div class="fields">
+				<div class="inline field ">
+					<label class="ui  label basic" style="border-width:0;">Country</label>
+					<input type="text" id="country" value="india">
+				</div>
+			</div>
+			<div class="fields">
+				<div class="inline field ">
+					<label class="ui  label basic" style="border-width:0;">State</label>
+					<input type="text" id="state" value="Punjab">
+				</div>
+			</div>
+		</div>
+	<div class="inline fields">
+		<h3>Education</h3>
+		<p style="text-align:right; margin-top:-2.5em;"><button name="edit" value="eduEdit" class="ui circular facebook  icon button" ><i class="edit big icon"></i></button></i></p>
+	</div>
+	<div class="ui blue table"></div>
+	<div class="ui large form disp" id="eduEdit">
+		<!-- <form class="edit"> -->
+			<div class="fields">
+				<div class="inline field ">
+					<label class="ui  label basic" style="border-width:0;">College Name</label>
+					<input type="text" name="Education[colname]" <%if(User.edu){%>value="<%=User.edu.colname%>"<%}%>>
+				</div>
+			</div>
+			<div class="fields">
+				<div class="inline field ">
+					<label class="ui  label basic" style="border-width:0;">Course</label>
+					<input type="text" name="Education[course]" <%if(User.edu){%>value="<%=User.edu.course%>"<%}%> >
+				</div>
+			</div>
+			<div class="fields">
+				<div class="inline field ">
+					<label class="ui  label basic" style="border-width:0;">CGPA</label>
+					<input type="text" name="Education[cgpa]" <%if(User.edu){%>value="<%=User.edu.cgpa%>"<%}%> >
+				</div>
+			</div>
+			<div class="fields">
+				<div class="inline field ">
+					<label class="ui  label basic" style="border-width:0;">XII Standard School</label>
+					<input type="text" name="Education[x2name]" <%if(User.edu){%>value="<%=User.edu.x2name%>"<%}%> >
+				</div>
+			</div>
+			<div class="fields">
+				<div class="inline field ">
+					<label class="ui  label basic" style="border-width:0;">Board</label>
+					<input type="text" name="Education[x2board]" <%if(User.edu){%>value="<%=User.edu.x2board%>"<%}%> >
+				</div>
+			</div>
+			<div class="fields">
+				<div class="inline field ">
+					<label class="ui  label basic" style="border-width:0;">Percentage</label>
+					<input type="text" name="Education[x2percent]" <%if(User.edu){%>value="<%=User.edu.x2percent%>"<%}%> >%
+				</div>
+			</div>
+			<div class="fields">
+				<div class="inline field ">
+					<label class="ui  label basic" style="border-width:0;">X Standard School</label>
+					<input type="text" name="Education[xname]" <%if(User.edu){%>value="<%=User.edu.xname%>" <%}%> >
+				</div>
+			</div>
+			<div class="fields">
+				<div class="inline field ">
+					<label class="ui  label basic" style="border-width:0;">Board</label>
+					<input type="text" name="Education[xboard]" <%if(User.edu){%>value="<%=User.edu.xboard%>" <%}%> >
+				</div>
+			</div>
+			<div class="fields">
+				<div class="inline field ">
+					<label class="ui  label basic" style="border-width:0;">Percentage</label>
+					<input type="text" name="Education[xpercent]" <%if(User.edu){%>value="<%=User.edu.xpercent%>"<%}%> >%
+				</div>
+			</div>
+	</div>
+	<div class="inline fields">
+		<h3>Contact Details</h3>
+		<p style="text-align:right; margin-top:-2.5em;"><button name="edit" value="contactEdit" class="ui circular google plus  icon button" ><i class="edit big icon"></i></button></p>
+	</div>
+	<div class="ui orange table"></div>
+	<div class="ui large form disp" id="contactEdit">
+			<div class="fields">
+				<div class="inline field ">
+					<label class="ui  label basic" style="border-width:0;">Email</label>
+					<input type="text" name="user[email]" value="<%=User.email%>" >
+				</div>
+			</div>
+			<div class="fields">
+				<div class="inline field ">
+					<label class="ui  label basic" style="border-width:0;">Contact No.</label>
+					<input type="text" name="user[contact]" value="<%=User.contact%>" >
+				</div>
+			</div>
+	</div>
+	<%}%>
+	<div class="inline fields">
+		<h3>Posts</h3>
+		<p style="text-align:right; margin-top:-2.5em;"><button name="edit" value="postEdit" class="ui circular twitter  icon button" ><i class="edit big icon"></i></button></i></p>
+	</div>
+	<div class="ui green table"></div>
+	<div class="ui link centered disp" id="postEdit">
+	<%if (User) {%>
+		<%User.blogs.forEach(function(blog){%>		
+				<div class="card">
+				  <div class="content">
+				    <div class="right floated meta"><%=moment(blog.date).startOf('sec').fromNow()%></div>
+				    <img class="ui avatar image" src="<%=User.profileImg%>"> <a href="/<%=User.username%>"><%=formatTitle.capWords(User.name)%></a>
+				  </div>
+				  <div class="image">
+				    <img src="<%=blog.imgUri%>" style="height:250px;">
+				  </div>
+				  <div class="content">
+				  	<a class="header" href="/<%=blog._id%>/post"><%=blog.title%></a>
+				    <span class="right floated">
+				      <i class="heart outline like icon"></i>
+				  		<%=blog.likes%>
+				    </span>
+				    <i class="comment icon"></i>
+				    <%=blog.comments.length%> comments
+				  </div>
+				</div>
+		<%});%>
+	<%}%>
+	</div>
+	<%if(user && User && user.id==User.id){%>
+	<div class="ui centered grid" style="margin-top:15px;margin-bottom:15px;">
+		<input type="submit" class="ui blue submit button"  value="Save Details">
+	</div>
+   <%}%>
+	</form>
+</div>
+</div>
+<script>
+	CKEDITOR.replace('user[about]');
+</script>
+<% include ../Metadata/footer %>

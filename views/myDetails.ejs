@@ -1,25 +1,19 @@
 <% include ../Metadata/header %>
-	<div class="ui segment">
+<div class="ui segment">
 		<table class="ui red table">
 			<thead>
 				<tr>
 					<th>Sr No.</th>
 					<th>Full Name</th>
-					<th>Registration No.</th>
+					<th>Date</th>
 					<th>Attendance</th>
 				</tr>
 			</thead>
 			<tbody>
-			<% var i=1;%>
-			<% users.forEach(function(user){%>
-					<% var size=user.status.length; var present=0;%>
-					<%if(size==0){%>
-						<%size=1;}%>
-					<% user.status.forEach(function(att){%>
+			<% var i=1; var present=0;%>
+			<% user.status.forEach(function(att){%>
 						<%if(att.state=='P'){%>
 							<%present+=1;}%>
-					<%});%>
-					<%var att =parseInt(present/size*100);%>
 					<tr>
 						<td>
 							<label><%=i%> </label>
@@ -31,18 +25,24 @@
 						</td>
 						<td >
 							<div class="ui transparent input">
-								<input type="text" name="user[username]" value=<%=user.reg_no%> readonly="true">
+								<input type="text" name="user[username]" value="<%=moment(att.date).format('Do MMM YY, H:mm:ss')%>" readonly="true">
 							</div>
 						</td>
 						
 						<td>
 							<div class="ui transparent input">
-								<input type="text" name="user[attendance]" value="<%=att%> %" readonly="true">
+								<input type="text" name="user[staus]" value="<%=att.state%>" readonly="true">
 							</div>
 						</td>
 					</tr>
 					<%i+=1;%>
 			<%});%>
+				<tr>
+					<td><strong>Summary</strong></td>
+					<td><strong> Total:-<%=i-1%></strong></td>
+					<td><strong>Attended:-<%=present%></strong></td>
+					<td><strong><%=parseInt(present*100/(i-1))%></strong> %</td>
+				</tr>
 			</tbody>
 		</table>
 	</div>

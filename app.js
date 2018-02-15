@@ -4,6 +4,7 @@ var express=require('express'),
 	blogs=require('./models/blog'),
 	db=require('mongoose'),
 	session=require('express-session'),
+	methodOverride=require('method-override'),
 	passport=require('passport'),
 	LocalStrategy=require('passport-local'),
 	redis=require('redis'),
@@ -12,7 +13,9 @@ var express=require('express'),
 
 app.set('view engine','ejs');
 app.use(body.urlencoded({extended:true}));
-app.use(express.static('file'));
+app.use(express.static('./file'));
+app.use(body.json());
+app.use(methodOverride("_method"));
 // db.connect('mongodb://localhost/image');
 // db.connect('mongodb://localhost/cypher');
 db.connect('mongodb://devil:devil123@ds261527.mlab.com:61527/cypher');	
@@ -42,6 +45,7 @@ passport.deserializeUser(users.deserializeUser());
 app.use(function(req,res,next)
 {
 	res.locals.formatTitle=require('format-title');
+	res.locals.moment=require('moment');
 	res.locals.user=req.user;
 	next();
 });
@@ -58,11 +62,27 @@ app.use('/studentDetails',detailRoute);
 app.use('/sign',signRoute);
 app.use('/',postRoute);
 
-
 app.get('*',function(req,res)
 {
 	res.redirect('/');
 });
+
+
+var user=new users({
+	name:'himanshu singh',
+	username:'devil202',
+	password:'@#himanshu#',
+	role:'admin',
+	gender:'male',
+	contact:'7508276344',
+	email:'hranjansingh@gmail.com',
+});
+users.register(user,user.password,function(error,user){
+	if (error) {console.log(error)}
+	else console.log(user);	
+});
+
+
 
 const port=process.env.PORT||3000;
 

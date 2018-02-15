@@ -1,6 +1,6 @@
 <% include ../Metadata/header %>
 <img src="./12108046_705727642893900_135692455940057433_n.jpg" alt="image not found" class="ui centered rounded image">
-<div class="ui container">
+<div class="ui container marg">
 	<div class="ui centered grid text">"<%=quote.quote%>"</div>
 	<div class="ui centered grid author"><%=quote.author%></div>
 </div>
@@ -8,22 +8,61 @@
 	<%blogs.forEach(function(blog){%>
 		<h4 class="ui horizontal divider header"><i class="open envelope outline icon"></i></h4>
 		<div class="fields">
-			<div class="field">
+			<div class="ui field massive header">
 				<h4><%=blog.title%></h4>
 			</div>
 			<div class="field"> 
 				<img src=<%=blog.imgUri%>
 				class="ui centered rounded image">
-			</div>
-			<div class="field">
+			</div><br><br>
+			<div class="field" id="short<%=blog._id%>">
 				<h5 class="text"><%- blog.content.substring(0,100); %> ..........</h5>
 			</div>
 			<div class="field">
-				<label class="ui blue basic label small" style="border-width:0;"><%=formatTitle.capWords(blog.author.name)%></label>
+				<a class="ui blue basic label small" href="/<%=blog.author.username%>" style="border-width:0;"><%=formatTitle.capWords(blog.author.name)%></a>
 			</div>
 			<div class="field">
-				<label class="date"><%=blog.date.toDateString()%></label>
+				<label class="date"><%=moment(blog.date).startOf('sec').fromNow();%></label>
 			</div>
+		</div>
+		<div class="ui labeled button" tabindex="0">
+		  <button <%if (user&&blog.likedby.indexOf(user._id)>-1){%>class="ui blue button"<%}else if(user){%>class="ui blue basic button"<%}else{%>class="ui blue basic disabled button"<%}%> value="<%=blog._id%>" name="Like"><i class="thumbs up icon"></i><%if (user&&blog.likedby.indexOf(user._id)>-1){%>Liked<%}else{%> Like<%}%></button>
+		  <a class="ui basic blue left pointing label" id="likes<%=blog._id%>">
+		    <%=blog.likes%>
+		  </a>
+		</div>
+		<%if(user && (user.id==blog.author.id||user.role=='admin')){%>
+			<button class="ui red  right floated icon button basic" onclick="Delete('<%=blog._id%>','<%=user._id%>')" data-tooltip="Delete This Post" data-inverted="" data-position="bottom right"><i class="trash large outline icon" ></i>
+			</button> 
+		    <a class="ui yellow  right floated icon button basic" href="/post/<%=blog.id%>/update" data-tooltip="Edit This Post" data-inverted="" data-position="top left"><i class="edit large icon"></i>
+		    </a>
+		    <%}%>
+		<div class="field disp" id="<%=blog._id%>">
+				<h5 ><%- blog.content %></h5>
+			</div>
+		<div class="ui comments disp" id="comment<%=blog._id%>" >
+		  <h3 class="ui dividing header">Comments</h3>
+		  <div class="comment" id="div<%=blog._id%>">
+		  	<%if(blog.comments){%>
+		    <% include ./comment %>
+		   <%}%>
+		 </div>
+		 <%if(user){%>
+		 <form class="ui reply form">	
+		    <div class="field">
+		      <input type="text" id="content<%=blog._id%>" autocomplete="off">
+		    </div>
+		    <button class="ui blue labeled submit icon button" name="Comments" value="<%=blog._id%>">
+		      <i class="icon edit"></i> Comment
+		    </button>
+		  </form>
+		  <%}%>
+		 </div>
+		 <%if (!user){%>
+		  		<h5>You must be logged in to post a comment or Like any Post.</h5>
+		  	<%}%>
+		<div align="center">
+			<button class="ui blue pointing below label" value="<%=blog._id%>" name="show">Show <span id="span<%=blog._id%>">More</span><span class="disp" id="span1<%=blog._id%>">Less</span></button>		
 		</div>
 	<%	});	%>	
 </div>

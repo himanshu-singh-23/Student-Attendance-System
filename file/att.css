@@ -2,10 +2,9 @@ body,html{
 	height: 100%;
 	width: 100%;
 }
-.ui{
-	margin-top: 40px;
+.ui.segment,.marg{
+	margin-top: 35px;
 }
-/*ui blue basic large label*/
 .ui.blue.basic.mini.label{
 	border-width: 0;
 }
@@ -13,4 +12,25 @@ body,html{
 .ui.form .field input{
 	max-height: 33px;
 	font-size: 20px;
+}
+.disp{
+	display: none;
+}
+.top-right {
+    position: absolute;
+    bottom: 8px;
+    right: 16px;
+    color: white;
+}
+.ui.container {
+    -ms-overflow-style: none;  // IE 10+
+    overflow: -moz-scrollbars-none;  // Firefox
+}
+.ui.container::-webkit-scrollbar { 
+    display: none;  // Safari and Chrome
+}
+.black
+{
+	background-color: black;
+	color: white;
 }

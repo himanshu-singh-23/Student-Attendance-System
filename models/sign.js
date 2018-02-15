@@ -28,6 +28,7 @@ router.post('/up',function(req,res)
 {
 	var user=new users(req.body);
 	user.name=user.name.toLowerCase();
+	user.username=user.username.toLowerCase();
 	user.email=user.email.toLowerCase();
 	users.register(user,user.password,function(error,user)
 	{
@@ -36,9 +37,18 @@ router.post('/up',function(req,res)
 	});
 });
 
+router.post('/validate/:val',function (req,res){
+	// console.log(req.body);
+	users.findOne({$or:[{username:req.body.value.toLowerCase()},{contact:req.body.value},{email:req.body.value.toLowerCase()}]},function (error,user) 
+	{
+		if(user){res.status(400).send();}
+		else {res.status(200).send();}
+	});
+})
+
 router.get('/out',function(req,res)
 {
 	req.logout();
-	res.redirect("/");
+	res.redirect("/sign/in");
 });
 module.exports=router;

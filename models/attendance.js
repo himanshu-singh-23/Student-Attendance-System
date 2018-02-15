@@ -7,8 +7,9 @@ var users=require('./user'),
 
 router.get("/",[isLoggedIn,admin],function(req,res)
 {
-	users.find({role:'inactive'},function(error,users)
+	users.find({role:'inactive'}).sort('name').exec(function(error,users)
 	{
+		console.log(users);
 		if(error) console.log(error);
 		else res.render('attendance',{users:users}); 
 	});

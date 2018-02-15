@@ -25,14 +25,14 @@
 					</td>
 					<td >
 						<div class="ui transparent input">
-							<input type="text" name="user[username]" value=<%=user.username%> readonly="true">
+							<input type="text" name="user[username]" value=<%=user.reg_no%> readonly="true">
 						</div>
 					</td>
 					
 					<td>
 						<select name="user[status]" class="ui  floating dropdown labeled search icon button menu">
-							<option class="item" selected="true" value="A">Absent</option>
-							<option class="item" value="P">Present</option>
+							<option class="item" selected="true" value="A-<%=user._id%>">Absent</option>
+							<option class="item" value="P-<%=user._id%>">Present</option>
 						</select>
 					</td>
 				</tr>

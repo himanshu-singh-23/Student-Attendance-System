@@ -1,0 +1,57 @@
+<% include ../Metadata/header %>
+<div class="ui segment container">
+	<div class="fields">
+		<div class="header fields">
+			<h2><%=blog.title%></h2>
+		</div><hr>
+		<div class="field">
+			<img src="<%=blog.imgUri%>" class="ui centered rounded image">
+		</div><br><br>
+		<div class="field">
+			<div class="text"><%- blog.content %> ..........</div>
+		</div>
+		<div class="field">
+			<label class="ui blue basic label small" style="border-width:0;"><%=formatTitle.capWords(blog.author.name)%></label>
+		</div>
+		<div class="field">
+			<label class="date"><%=moment(blog.date).startOf('sec').fromNow();%></label>
+		</div>
+	</div>
+	<div class="ui labeled button" tabindex="0">
+	  <button <%if (user&&blog.likedby.indexOf(user._id)>-1){%>class="ui blue button"<%}else if(user){%>class="ui blue basic button"<%}else{%>class="ui blue basic disabled button"<%}%> value="<%=blog._id%>" name="Like"><i class="thumbs up icon"></i><%if (user&&blog.likedby.indexOf(user._id)>-1){%>Liked<%}else{%> Like<%}%></button>
+	  <a class="ui basic blue left pointing label" id="likes<%=blog._id%>">
+	    <%=blog.likes%>
+	  </a>
+	</div>
+	<%if(user && (user.id==blog.author.id)||user.role=='admin'){%>
+		<button class="ui red  right floated icon button basic" onclick="Delete('<%=blog.id%>','<%=blog.author.id%>')" data-tooltip="Delete This Post" data-inverted="" data-position="bottom right"><i class="trash large outline icon" ></i>
+		</button> 
+		<a class="ui yellow  right floated icon button basic" href="/post/<%=blog.id%>/update" data-tooltip="Edit This Post" data-inverted="" data-position="top left"><i class="edit large icon"></i>
+		</a>
+	<%}%>
+</div>
+<div class="ui segment container">
+	<div class="ui comments" id="comment<%=blog._id%>" >
+	  <h3 class="ui dividing header">Comments</h3>
+	  <div class="comment" id="div<%=blog._id%>">
+	  	<%if(blog.comments){%>
+	    <% include ./comment %>
+	   <%}%>
+	 </div>
+	 <%if(user){%>
+	 <form class="ui reply form">	
+	    <div class="field">
+	      <input type="text" id="content<%=blog._id%>" autocomplete="off">
+	    </div> 
+	    <button class="ui blue labeled submit icon button" name="Comments" value="<%=blog._id%>">
+	      <i class="icon edit"></i> Comment
+	    </button>
+	  </form>
+	  <%}%>
+	 </div>
+	 <%if (!user){%>
+	  		<h5>You must be logged in to post a comment or Like any Post.</h5>
+	  	<%}%>
+	</div>
+</div>
+<% include ../Metadata/footer %>

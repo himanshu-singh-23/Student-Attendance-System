@@ -11,13 +11,19 @@ router.get('/',[isLoggedIn,admin],function(req,res)
 
 router.post('/',[isLoggedIn,admin],function(req,res)
 {
-	var user=new users(req.body.user);
-	user.name=user.name.toLowerCase();
-	user.email=user.email.toLowerCase();
-	users.register(user,user.password,function(error,user)
+	users.findOne({username:req.body.username},function(error,user)
 	{
-		if (error)console.log(error);
-		else res.redirect('/markAttendance');
+		if(error) res.redirect('back');
+		else
+		{
+			user.reg_no=req.body.reg_no;
+			user.role=req.body.role;
+			user.save(function(error,user)
+			{
+				if(error) res.redirect('back');
+				else res.redirect('/studentDetails');
+			});
+		}
 	});
 });
 module.exports=router;

@@ -2,15 +2,12 @@
 <div class="ui inverted segment container">
 	<form class="ui form" action="/addStudents" method="post">
 		<div class="ui centered grid green table">
-		<div class="">
-			
-		</div>
 		<div class="fields two column row">
 			<div class="field column required">
-				<label>Full Name</label>	
+				<label>Username</label>	
 			</div>
-			<div class="field column required">
-				<input type="text" name="user[name]" placeholder="First Name" required="true">			
+			<div class="field column ">
+				<input type="text" name="username" placeholder="Username" required="true">
 			</div>
 		</div>
 		<div class="fields two column row">
@@ -18,35 +15,7 @@
 				<label>Registration Number</label>	
 			</div>
 			<div class="field column ">
-				<input type="text" name="user[username]" placeholder="Registration Number" required="true">		
-			</div>
-		</div>
-		<div class="fields two column row">
-			<div class="field column required">
-				<label>Contact Number</label>	
-			</div>
-			<div class="field column">
-				<input type="text" name="user[contact]" placeholder="Contact Number" required="true">		
-			</div>
-		</div>
-		<div class="fields two column row">
-			<div class="field column required">
-				<label>Email</label>	
-			</div>
-			<div class="field column">
-				<input type="text" name="user[email]" placeholder="abc@gmail.com" required="true">		
-			</div>
-		</div>
-		<div class="fields two column row">
-			<div class="field column">
-				<label>Gender</label>	
-			</div>
-			<div class="field column">
-				<select class="ui  floating dropdown labeled search icon button menu" name="user[gender]">
-					<option class="item" value="male" selected="true">Male</option>
-					<option class="item" value="female" >Female</option>
-					<option class="item" value="other" >other</option>
-				</select>		
+				<input type="text" name="reg_no" placeholder="Registration Number" required="true">		
 			</div>
 		</div>
 		<div class="fields two column row">
@@ -54,7 +23,7 @@
 				<label>Role</label>	
 			</div>
 			<div class="field column">
-				<select class="ui  floating dropdown labeled search icon button menu" name="user[role]">
+				<select class="ui  floating dropdown labeled search icon button menu" name="role">
 					<option class="item" value="active">Active</option>
 					<option class="item" value="inactive" selected="true">Inactive</option>
 				</select>		

@@ -1,0 +1,34 @@
+<%blog.comments.forEach(function(comment){%>
+    <a class="avatar">
+      <i class="icon big spy"></i>
+    </a>
+    <div class="content">
+      <a class="author" href="/<%=blog.author.username%>" ><%=formatTitle.capWords(comment.author.name)%></a>
+      <div class="metadata">
+        <span class="date"><%=moment(comment.date).startOf('sec').fromNow()%></span>
+      </div>
+      <div class="text">
+        <%=comment.content%>
+      </div>
+      <div class="comment" id="replys<%=comment._id%>">
+      <%if(comment.replys){%>
+         <% include ./reply %>
+      <%}%>
+      </div>
+      <%if (user) {%>
+      <div class="actions">
+        <label class="ui basic reply label" name="<%=comment._id%>">Reply <label>
+      </div>
+      <div class="ui comments disp" id="reply<%=comment._id%>">
+      		<form class="ui reply form" action="#" method="post">	
+		    <div class="inline field">
+		      <input type="text" id="recontent<%=comment._id%>" autocomplete="off">
+		    <button class="ui blue labeled submit icon button" name="Replys" value="<%=comment._id%>">
+		      <i class="icon edit"></i> Reply
+		    </button>
+		    </div>
+		  </form>
+      </div>
+      <%}%>
+    </div><br>
+   <%});%>

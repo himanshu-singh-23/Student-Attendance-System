@@ -2,7 +2,7 @@
 
 <div class="ui container marg">
 	<div class="ui blue ribbon label massive">Add New Post!!</div>
-	<form method="post" action="/newPost" enctype="multipart/form-data" class="ui massive segment form" id="postForm">
+	<form class="ui massive segment form"  id="updateForm" method="post" action="/post/<%=blog.id%>/update?_method=PUT" enctype="multipart/form-data" >
 		<div class="ui stackable grid">
 			<div class="four column row fields">
 				<div class="column required field">
@@ -10,7 +10,7 @@
 				</div>
 				<div class="column"></div>
 				<div class="six wide column field">
-					<input type="text" name="blog[title]" placeholder="Title">
+					<input type="text" name="title" value="<%=blog.title%>" placeholder="Title">
 				</div>
 			</div>
 			<div class="four column row fields">
@@ -19,15 +19,14 @@
 				</div>
 				<div class="column"></div>
 				<div class="eight wide column field">
-					<textarea name="blog[content]" id="content" style="max-height:1000;max-width:500;" placeholder="Write Your Quotes." ></textarea>
+					<textarea name="content" id="content" style="max-height:1000;max-width:500;" placeholder="Write Your Quotes." ><%=blog.content%></textarea>
 				</div>
-
 			</div>
 			<div class="four column row fields">
 				<label class="column required"> <strong>Image Url </strong><i class="file image outline icon"></i></label>
 				<div class="column"></div>
 				<div class="six wide column field">
-					<input type="url" name="blog[imgUri]" placeholder="http://xyz.com">
+					<input type="url" name="imgUri" placeholder="http://xyz.com" <%if(blog.imgUri.length<200){%>value="<%=blog.imgUri%>"<%}%> >
 				</div>
 			</div>
 			<p class="ui">Or</p>
@@ -35,15 +34,15 @@
 				<label class="column"> <strong>Image</strong><i class="file image outline icon"></i></label>
 				<div class="column"></div>
 				<div class="six wide column">
-					<input type="file" name="img" style="border-width:0;margin-top:-20px;" accept="image/*">
+					<input type="file" name="img" style="border-width:0;margin-top:-20px;" onchange="UpdateImage('<%=blog.id%>')">
 				</div>
 			</div>
 			<div class="four column row fields">
 				<div class="column required field">
-					<label class="column"> <strong>Tags</strong><i class="tag icon"></i></label>
+					<label class="column"> <strong>Tags</strong><i class="file image outline icon"></i></label>
 				</div>
-				<textarea type="text" class="column" style="font-size:12px;max-height:25px;" name="blog[tags]" id="tags"></textarea>
-				<select id="tag" class="column" style="font-size:10px;height:25px;">
+				<textarea type="text" class="column" style="font-size:12px;max-height:25px;" name="tags" id="tags"><%=blog.tags%></textarea>
+				<select id="tag" class="column" style="font-size:18px;max-height:25px;">
 					<%tags.forEach(function(tag){%>
 						<option  value="<%=tag%>" ><%=formatTitle.capWords(tag);%></option>
 					<%});%>
@@ -53,13 +52,13 @@
 		<div class="ui centered grid">
 			<div class="four column row">
 				<div class="column">
-					<input type="submit" value="Submit" class="ui blue button">
+					<label class="ui blue button" onclick="Update('<%=blog.id%>','<%=user.id%>')">Update</label>
 				</div>
 			</div>
 		</div>
-	</form>	
-	<script type="text/javascript">
-		CKEDITOR.replace('blog[content]');
-	</script>
+	</form>
 </div>
+<script type="text/javascript">
+	CKEDITOR.replace('content');
+</script>
 <% include ../Metadata/footer %>

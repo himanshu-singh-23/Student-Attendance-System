@@ -1,44 +1,54 @@
 <% include ../Metadata/header %>
 <div class="ui padded inverted segment container">
-	<div class="ui centered padded grid segment">
+	<div class="ui centered stackable grid segment">
 	<div class="four column row" >
 		<div class="column">
 			<h1 class="ui red ribbon label massive">Sign Up For Cypher</h1>
 		</div>
 	</div>
+	<label id="showerror" class="ui basic red pointing below hidden label"></label>
     <div class="four column row">
-	  <form class="ui equal width large form" action="/sign/up" method="post">
+	  <form class="ui equal width large form" action="/sign/up" method="post" id="signupForm">
 	    <div class="fields two column row">
-			<div class="field column">
-				<label>Full Name</label>
-				<input type="text" name="name" placeholder="Full Name">
+			<div class="required field column">
+				<label class="">Full Name</label>
+				<input type="text" name="name" placeholder="Full Name" required="true">
 			</div>
-			<div class="field column">
-	        	<label>Username</label>
-	        	<input  type="text" name="username" placeholder="abcde">
+			<div class="required field column">
+	        	<label class="">Username</label>
+		        <div class="inline ui icon input" id="username">
+					<input  type="text" name="username" placeholder="abcde" required="true" >
+					<i class="icon" ></i>
+				</div>
 	      	</div>
 		</div>
 		<div class="fields two column row">
-			<div class="field column">
-				<label>Contact no</label>
-				<input type="text" name="contact" placeholder="75XXXXXX">
+			<div class="required field column">
+				<label class="">Contact no</label>
+				<div class="ui icon input" id="contact">
+					<input type="text" name="contact" placeholder="75XXXXXX" required="true">
+				<i class="icon"></i>
+				</div>
 			</div>
-			<div class="field column">
-				<label>Email</label>
-				<input type="text" name="email" placeholder="xyz@xyc.com">
+			<div class="required field column">
+				<label class="">Email</label>
+				<div class="ui icon input" id="email">
+					<input type="email" name="email" placeholder="xyz@xyc.com" required="true">
+					<i class="icon"></i>
+				</div>
 			</div>
 		</div>
 	    <div class="fields two column row">
-	      <div class="field column">
-	        <label>Gender</label>
+	      <div class="required field column">
+	        <label class="">Gender</label>
 	        <select class="ui compact selection menu" name="gender">
 	        	<option value="male" selected="true">Male</option>
 	        	<option value="female">Female</option>
 	        	<option value="Othe">Other</option>
 	        </select>
 	      </div>
-	      <div class="field column">
-	        <label>Job Title</label>
+	      <div class="required field column">
+	        <label class="">Job Title</label>
 	        <select name="role" class="ui compact selection menu" style="max-height:30px;">
 	        	<option value="Teacher">Teacher</option>
 	        	<option value="Student" selected="true">Student</option>
@@ -47,13 +57,13 @@
 	      </div>
 	    </div>
 	    <div class="fields two column row">
-	      <div class="field column">
-	        <label>Password</label>
-	        <input placeholder="*******" type="Password" name="password">
+	      <div class="required field column">
+	        <label class="">Password</label>
+	        <input placeholder="*******" type="Password" name="password" required="true">
 	      </div>
-	      <div class="field column">
-	        <label>Confirm Password</label>
-	        <input placeholder="*******" type="Password" name="cnfpassword">
+	      <div class="required field column">
+	        <label class="">Confirm Password</label>
+	        <input placeholder="*******" type="Password" name="cnfpassword" required="true">
 	      </div>
 	    </div>
 	    <input type="submit" class="ui submit blue button" value="Sign Up">
