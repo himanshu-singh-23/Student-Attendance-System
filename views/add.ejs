@@ -1,7 +1,7 @@
 <% include ../Metadata/header %>
 <div class="ui inverted segment container">
-	<form class="ui stackable form" action="/addStudents" method="post">
-		<div class="ui centered grid green table">
+	<div class="ui stackable centered grid green table">
+	<form class="ui equal width big form" action="/addStudents" method="post">
 		<div class="fields two column row">
 			<div class="field column required">
 				<label>Username</label>	
@@ -19,7 +19,7 @@
 			</div>
 		</div>
 		<div class="fields two column row">
-			<div class="field column">
+			<div class="field column required">
 				<label>Role</label>	
 			</div>
 			<div class="field column">
@@ -29,11 +29,10 @@
 				</select>		
 			</div>
 		</div>
-		</div>
 		<div class="ui centered grid">
 			<input type="submit" value="S A V E" class="ui submit blue button">
 		</div>
 	</form>
-
+	</div>
 </div>
 <% include ../Metadata/footer %>
