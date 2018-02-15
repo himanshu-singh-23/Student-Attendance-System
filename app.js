@@ -7,6 +7,7 @@ var express=require('express'),
 	methodOverride=require('method-override'),
 	passport=require('passport'),
 	LocalStrategy=require('passport-local'),
+	redis=require('redis'),
 	app=express();
 
 
@@ -21,7 +22,7 @@ db.connect('mongodb://devil:devil123@ds261527.mlab.com:61527/cypher');
 
 if (process.env.REDISTOGO_URL) {
     var rtg   = require("url").parse(process.env.REDISTOGO_URL);
-	var redis = require("redis").createClient(rtg.port, rtg.hostname);
+	var redis = require("redis").createClient(rtg.port, rtg.hostname,rtg.password);
 
 	redis.auth(rtg.auth.split(":")[1]);
 } else {

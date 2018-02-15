@@ -27,6 +27,7 @@
     "passport-local": "^1.0.0",
     "passport-local-mongoose": "^4.4.0",
     "redis": "^2.8.0",
-    "sweetalert2": "^7.8.7"
+    "sweetalert2": "^7.8.7",
+    "url": "^0.11.0"
   }
 }
