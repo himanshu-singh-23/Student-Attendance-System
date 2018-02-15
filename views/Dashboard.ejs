@@ -1,0 +1,28 @@
+<% include ../Metadata/header%>
+<div class="ui container marg">
+	<div class="ui green table marg">
+		<table>
+			<thead>
+				<th>Sr.</th>
+				<th>Name</th>
+				<th>Username</th>
+				<th>Contact No.</th>
+				<th>Email</th>
+			</thead>
+			<tbody>
+				<%var i=1;%>
+				<%users.forEach(function(user){%>
+					<tr>
+						<td><%=i%></td>
+						<td><%=user.name%></td>
+						<td><%=user.username%></td>
+						<td><%=user.contact%></td>
+						<td><%=user.email%></td>
+					</tr>
+					<%i+=1;%>
+				<%});%>
+			</tbody>
+		</table>
+	</div>
+</div>
+<% include ../Metadata/footer%>

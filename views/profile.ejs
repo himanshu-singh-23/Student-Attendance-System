@@ -1,29 +1,27 @@
 <% include ../Metadata/header %>
 <div class="ui container" style="margin-top:43px;align:left;">
 	<div class="ui fluid image">
-	<%if(User){%>
-		<img src="<%=User.coverImg%>" style="width:100%;height:30rem;" id="coverimage1">
+		<%if(User){%>
+			<img src="<%=User.coverImg%>" style="width:100%;height:30rem;" id="coverimage1">
+		<%}%>
+		<%if(user && User && user.id==User.id){%>
+		<input type="file" name="coverImg" id='cover' style="height:0px;width:0;opacity:0;position:fixed;" accept="image/*">
+			<label for="cover">
+				<figure id="coverPic" class="ui basic red bottom right attached label"><i class="camera icon"></i></figure>
+			</label>
+		<%}%>
+	</div>
+	<div class="ui fluid image" style="margin-top:-16em; align:left;">
+	<%if (User) {%>
+		<img src="<%=User.profileImg%>" class="ui medium rounded small image" style="width:19em;height:19em;" id="profileimage1">
 	<%}%>
 	<%if(user && User && user.id==User.id){%>
-	<input type="file" name="coverImg" id='cover' style="height:0px;width:0;opacity:0;" accept="image/*">
-		<label for="cover">
-			<figure id="coverPic" class="ui basic red bottom right attached label"><i class="camera icon"></i></figure>
+		<input type="file" name="fd" id="profile" style="height:0px;width:0;opacity:0;" accept="image/*">
+		<label for="profile">
+			<figure name="profilePic" class="ui basic horizontal red bottom left attached label"><i class="camera icon"></i></figure>
 		</label>
 	<%}%>
 	</div>
-</div>
-<div class="ui container" style="margin-top:-16em;align:left;">
-		<div class="ui fluid image">
-		<%if (User) {%>
-			<img src="<%=User.profileImg%>" class="ui medium rounded small image" style="width:19em;height:19em;" id="profileimage1">
-		<%}%>
-		<%if(user && User && user.id==User.id){%>
-			<input type="file" name="fd" id="profile" style="height:0px;width:0;opacity:0;" accept="image/*">
-			<label for="profile">
-				<figure name="profilePic" class="ui basic horizontal red bottom left attached label"><i class="camera icon"></i></figure>
-			</label>
-		<%}%>
-		</div>
 </div>
 <div class="ui container">
 	<%if(User){%>

@@ -11,6 +11,7 @@
 		</div>
 		<div class='collapse navbar-collapse' id='menu'>
 			<ul class='nav navbar-nav '>
+				<%if(user && user.role=='admin'){%><li><a href="/dashboard"><i class="dashboard teal	 icon"></i>Dashboard</a></li><%}%>
 				<% if(user && (user.role=='active'||user.role=='admin')){%>
 						<li><a href="/addStudents"><i class="outline cubes green icon"></i>Cypher Member</a></li>
 						<li><a href="/markAttendance"><i class="columns violet  icon"></i> Mark Attendance</a></li>

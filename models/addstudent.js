@@ -11,7 +11,7 @@ router.get('/',[isLoggedIn,admin],function(req,res)
 
 router.post('/',[isLoggedIn,admin],function(req,res)
 {
-	users.findOne({username:req.body.username},function(error,user)
+	users.findOne({username:req.body.username.toLowerCase()},function(error,user)
 	{
 		if(error) res.redirect('back');
 		else

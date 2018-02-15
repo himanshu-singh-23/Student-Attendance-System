@@ -56,11 +56,20 @@ var attendanceRoute=require('./models/attendance'),
 	detailRoute=require('./models/details');
 	postRoute=require('./models/post');
 
+app.get('/dashboard',function(req,res)
+{
+	users.find({},function(error,users)
+	{
+		res.render('Dashboard',{users:users});
+	});
+});
+
 app.use('/markAttendance',attendanceRoute);
 app.use('/addStudents',newRoute);
 app.use('/studentDetails',detailRoute);
 app.use('/sign',signRoute);
 app.use('/',postRoute);
+
 
 app.get('*',function(req,res)
 {
