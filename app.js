@@ -68,19 +68,19 @@ app.get('*',function(req,res)
 });
 
 
-var user=new users({
-	name:'himanshu singh',
-	username:'devil202',
-	password:'@#himanshu#',
-	role:'admin',
-	gender:'male',
-	contact:'7508276344',
-	email:'hranjansingh@gmail.com',
-});
-users.register(user,user.password,function(error,user){
-	if (error) {console.log(error)}
-	else console.log(user);	
-});
+// var user=new users({
+// 	name:'himanshu singh',
+// 	username:'devil202',
+// 	password:'@#himanshu#',
+// 	role:'admin',
+// 	gender:'male',
+// 	contact:'7508276344',
+// 	email:'hranjansingh@gmail.com',
+// });
+// users.register(user,user.password,function(error,user){
+// 	if (error) {console.log(error)}
+// 	else console.log(user);	
+// });
 
 
 
