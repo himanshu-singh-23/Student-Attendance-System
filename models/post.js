@@ -66,7 +66,7 @@ router.post('/post/:id/like',isLoggedIn,function(req,res)
 			if(index>-1)
 			{
 				console.log(blog.likedby);
-				blog.likes-=1;
+				blog.likes=max(0,blog.likes-1);
     			blog.likedby.splice(index, 1);
 				blog.save(function(error,blog)
 				{

@@ -20,6 +20,22 @@ var tags=$('#tags'),
 	  tag=$('#tag');
 
 // console.log(reply); 
+
+$('profileForm #pincode').on('change',function(e)
+{
+  console.log('hello');
+  $.ajax({
+    url:'http://postalpincode.in/api/pincode/'+$(this).val(),
+    type:'GET'
+  }).done(function(result)
+  {
+    console.log(result);
+  })
+  .fail(function(error)
+  {
+    console.log(error);
+  });
+})
 function Reply()
 {
   reply=$('.reply');
@@ -117,21 +133,21 @@ replys.on('click',function(e){
 
 like.on('click',function(e)
 {
-  var x=$(this);
+    var x=$(this);
+    var a=document.getElementById(`likes${x.val()}`);
+    x.toggleClass('basic');
+    if (x.html()=='<i class="thumbs up icon"></i> Like'){
+      a.innerHTML=parseInt(a.innerHTML)+1;
+      x.html('<i class="thumbs up icon"></i> Liked');
+    }
+    else {
+      x.html('<i class="thumbs up icon"></i> Like');
+      a.innerHTML=max(0,parseInt(a.innerHTML)-1);
+    }
   $.ajax({
     url:`\\post\\${x.val()}\\like`,
     type:"POST",
     contentType:'application/json',
-  })
-  .done(function(result){
-    x.toggleClass('basic');
-    if (x.html()=='<i class="thumbs up icon"></i> Like') {
-      x.html('<i class="thumbs up icon"></i> Liked');
-    }
-    else
-    x.html('<i class="thumbs up icon"></i> Like');
-    var a=document.getElementById(`likes${x.val()}`);
-    a.innerHTML=result;
   })
   .fail(function(err){
     swal("Oops", "We couldn't connect to the server!", "error");
@@ -279,4 +295,22 @@ function UpdateImage(postId)
   {
     swal("Oops", "We couldn't connect to the server!", "error");
   });
+}
+
+function showLikes(likedby)
+{
+  console.log('yes');
+  var likes="";
+  likedby.forEach(function(user)
+  { 
+    likes+=`<a href="/${user.username}">${user.name}</a>`
+  });
+  swal({
+  title: 'Likes',
+  type: 'info',
+  html:likes,
+  showCloseButton: true,
+  showCancelButton: false,
+  focusConfirm: false,
+})
 }

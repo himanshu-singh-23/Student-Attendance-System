@@ -9,7 +9,7 @@ var userSchema=new db.Schema({
 	password:{type:String,default:"123456789a"},
 	role:String,
 	profileImg:{type:String,default:"https://chmegg-images-prod.s3.amazonaws.com/avatar/image_fileEOsdIm_d5a893a7.jpeg"},
-	coverImg:{type:String,default:"https://semantic-ui.com/images/wireframe/image.png"},
+	// coverImg:{type:String,default:"https://semantic-ui.com/images/wireframe/image.png"},
 	status:[{
 		type:db.Schema.Types.ObjectId,
 		ref:"status"

@@ -17,17 +17,17 @@ app.use(express.static('./file'));
 app.use(body.json());
 app.use(methodOverride("_method"));
 // db.connect('mongodb://localhost/image');
-// db.connect('mongodb://localhost/cypher');
-db.connect('mongodb://devil:devil123@ds261527.mlab.com:61527/cypher');	
+db.connect('mongodb://localhost/cypher');
+// db.connect('mongodb://devil:devil123@ds261527.mlab.com:61527/cypher');	
 
-if (process.env.REDISTOGO_URL) {
-    var rtg   = require("url").parse(process.env.REDISTOGO_URL);
-	var redis = require("redis").createClient(rtg.port, rtg.hostname,rtg.password);
+// if (process.env.REDISTOGO_URL) {
+//     var rtg   = require("url").parse(process.env.REDISTOGO_URL);
+// 	var redis = require("redis").createClient(rtg.port, rtg.hostname,rtg.password);
 
-	redis.auth(rtg.auth.split(":")[1]);
-} else {
-    var redis = require("redis").createClient();
-}
+// 	redis.auth(rtg.auth.split(":")[1]);
+// } else {
+//     var redis = require("redis").createClient();
+// }
 
 app.use(session({
     secret:"Cypher attendance System.!",
@@ -47,6 +47,7 @@ app.use(function(req,res,next)
 	res.locals.formatTitle=require('format-title');
 	res.locals.moment=require('moment');
 	res.locals.user=req.user;
+	res.locals.pin=require('pincode');
 	next();
 });
 

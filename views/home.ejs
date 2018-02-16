@@ -26,8 +26,8 @@
 			</div>
 		</div>
 		<div class="ui labeled button" tabindex="0">
-		  <button <%if(user&&blog.likedby.indexOf(user._id)>-1){%>class="ui blue button"<%}else if(user){%>class="ui blue basic button"<%}else{%>class="ui blue basic disabled button"<%}%> value="<%=blog._id%>" name="Like"><i class="thumbs up icon"></i><%if(user&&blog.likedby.indexOf(user._id)>-1){%>Liked<%}else{%>Like<%}%></button>
-		  <a class="ui basic blue left pointing label" id="likes<%=blog._id%>">
+		  <button <%if(user&&blog.likedby.indexOf(user.id)>-1){%>class="ui blue button"<%}else if(user){%>class="ui blue basic button"<%}else{%>class="ui blue basic disabled button"<%}%> value="<%=blog._id%>" name="Like"><i class="thumbs up icon"></i><%if(user&&blog.likedby.indexOf(user.id)>-1){%>Liked<%}else{%>Like<%}%></button>
+		  <a class="ui basic blue left pointing label" id="likes<%=blog._id%>" onclick="showLikes('<%=blog.likedby%>')">
 		    <%=blog.likes%>
 		  </a>
 		</div>
@@ -38,7 +38,7 @@
 		    </a>
 		    <%}%>
 		<div class="field disp" id="<%=blog._id%>">
-				<h5 ><%- blog.content %></h5>
+				<p><%- blog.content %></p>
 			</div>
 		<div class="ui comments disp" id="comment<%=blog._id%>" >
 		  <h3 class="ui dividing header">Comments</h3>
