@@ -23,7 +23,7 @@
 	    <%=blog.likes%>
 	  </a>
 	</div>
-	<%if(user && (user.id==blog.author.id)||user.role=='admin'){%>
+	<%if(user && (user.id==blog.author.id||user.role=='admin')){%>
 		<button class="ui red  right floated icon button basic" onclick="Delete('<%=blog.id%>','<%=blog.author.id%>')" data-tooltip="Delete This Post" data-inverted="" data-position="bottom right"><i class="trash large outline icon" ></i>
 		</button> 
 		<a class="ui yellow  right floated icon button basic" href="/post/<%=blog.id%>/update" data-tooltip="Edit This Post" data-inverted="" data-position="top left"><i class="edit large icon"></i>

@@ -38,7 +38,6 @@ router.post('/up',function(req,res)
 });
 
 router.post('/validate/:val',function (req,res){
-	// console.log(req.body);
 	users.findOne({$or:[{username:req.body.value.toLowerCase()},{contact:req.body.value},{email:req.body.value.toLowerCase()}]},function (error,user) 
 	{
 		if(user){res.status(400).send();}

@@ -30,6 +30,8 @@ var userSchema=new db.Schema({
 	reg_no:String,
 	dob:{type:Date},
 	pincode:String,
+	country:{type:String,default:""},
+	state:{type:String,default:""},
 	relationship:{type:String,default:'single'},
 	date:{type:Date,default:Date.now}
 });

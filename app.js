@@ -18,12 +18,12 @@ app.use(body.json());
 app.use(methodOverride("_method"));
 // db.connect('mongodb://localhost/image');
 db.connect('mongodb://localhost/cypher');
-// db.connect('mongodb://devil:devil123@ds261527.mlab.com:61527/cypher');	
+// db.connect('mongodb://username:password@ds261527.mlab.com:61527/cypher');	
 
 // if (process.env.REDISTOGO_URL) {
 //     var rtg   = require("url").parse(process.env.REDISTOGO_URL);
 // 	var redis = require("redis").createClient(rtg.port, rtg.hostname,rtg.password);
-
+	
 // 	redis.auth(rtg.auth.split(":")[1]);
 // } else {
 //     var redis = require("redis").createClient();
@@ -47,19 +47,20 @@ app.use(function(req,res,next)
 	res.locals.formatTitle=require('format-title');
 	res.locals.moment=require('moment');
 	res.locals.user=req.user;
-	res.locals.pin=require('pincode');
 	next();
 });
+ 
 
 var attendanceRoute=require('./models/attendance'),
 	newRoute=require('./models/addstudent'),
 	signRoute=require('./models/sign'),
-	detailRoute=require('./models/details');
+	pincodeRoute=require('./models/pincode'),
+	detailRoute=require('./models/details'),
 	postRoute=require('./models/post');
 
 app.get('/dashboard',function(req,res)
 {
-	users.find({},function(error,users)
+	users.find({}).sort({date:-1}).exec(function(error,users)
 	{
 		res.render('Dashboard',{users:users});
 	});
@@ -69,6 +70,7 @@ app.use('/markAttendance',attendanceRoute);
 app.use('/addStudents',newRoute);
 app.use('/studentDetails',detailRoute);
 app.use('/sign',signRoute);
+app.use('/user',pincodeRoute);
 app.use('/',postRoute);
 
 

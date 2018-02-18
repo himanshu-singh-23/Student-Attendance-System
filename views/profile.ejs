@@ -1,16 +1,5 @@
 <% include ../Metadata/header %>
 <div class="ui container" style="margin-top:43px;align:left;">
-	<!--<div class="ui fluid image">
-		<%if(User){%>
-			<img src="<%=User.coverImg%>" style="width:100%;height:30rem;" id="coverimage1">
-		<%}%>
-		<%if(user && User && user.id==User.id){%>
-		<input type="file" name="coverImg" id='cover' style="height:0px;width:0;opacity:0;position:fixed;" accept="image/*">
-			<label for="cover">
-				<figure id="coverPic" class="ui basic red bottom right attached label"><i class="camera icon"></i></figure>
-			</label>
-		<%}%>
-	</div> -->
 	<div class="ui fluid image marg" align:left;">
 	<%if (User) {%>
 		<img src="<%=User.profileImg%>" class="ui medium rounded small image" style="width:19em;height:19em;" id="profileimage1">
@@ -94,19 +83,19 @@
 			<div class="fields">
 				<div class="inline field ">
 					<label class="ui  label basic" style="border-width:0;">Pincode</label>
-					<input type="text"name="user[pincode]" id="pincode" value="<%=User.pincode%>">
+					<input type="text" name="user[pincode]" id="pincode" value="<%=User.pincode%>">
 				</div>
 			</div>
 			<div class="fields">
 				<div class="inline field ">
 					<label class="ui  label basic" style="border-width:0;">Country</label>
-					<input type="text" id="country" value="india">
+					<input type="text" name="user[country]" id="country" value="<%=User.country%>">
 				</div>
 			</div>
 			<div class="fields">
 				<div class="inline field ">
 					<label class="ui  label basic" style="border-width:0;">State</label>
-					<input type="text" id="state" value="Punjab">
+					<input type="text" name="user[state]" id="state" value="<%=User.state%>">
 				</div>
 			</div>
 		</div>
@@ -116,7 +105,6 @@
 	</div>
 	<div class="ui blue table"></div>
 	<div class="ui large form disp" id="eduEdit">
-		<!-- <form class="edit"> -->
 			<div class="fields">
 				<div class="inline field ">
 					<label class="ui  label basic" style="border-width:0;">College Name</label>
@@ -202,20 +190,20 @@
 		<%User.blogs.forEach(function(blog){%>		
 				<div class="card">
 				  <div class="content">
-				    <div class="right floated meta"><%=moment(blog.date).startOf('sec').fromNow()%></div>
-				    <img class="ui avatar image" src="<%=User.profileImg%>"> <a href="/<%=User.username%>"><%=formatTitle.capWords(User.name)%></a>
+					<div class="right floated meta"><%=moment(blog.date).startOf('sec').fromNow()%></div>
+					<img class="ui avatar image" src="<%=User.profileImg%>"> <a href="/<%=User.username%>"><%=formatTitle.capWords(User.name)%></a>
 				  </div>
 				  <div class="image">
-				    <img src="<%=blog.imgUri%>" style="height:250px;">
+					<img src="<%=blog.imgUri%>" style="height:250px;">
 				  </div>
 				  <div class="content">
-				  	<a class="header" href="/<%=blog._id%>/post"><%=blog.title%></a>
-				    <span class="right floated">
-				      <i class="heart outline like icon"></i>
-				  		<%=blog.likes%>
-				    </span>
-				    <i class="comment icon"></i>
-				    <%=blog.comments.length%> comments
+					<a class="header" href="/<%=blog._id%>/post"><%=blog.title%></a>
+					<span class="right floated">
+					  <i class="heart outline like icon"></i>
+						<%=blog.likes%>
+					</span>
+					<i class="comment icon"></i>
+					<%=blog.comments.length%> comments
 				  </div>
 				</div>
 		<%});%>

@@ -19,14 +19,15 @@ var tags=$('#tags'),
     edit=$('button[name=edit]');
 	  tag=$('#tag');
 
-// console.log(reply); 
-
-$('profileForm #pincode').on('change',function(e)
+$('#pincode').on('change',function(e)
 {
-  console.log('hello');
+
+  console.log('hello',$(this).val());
   $.ajax({
-    url:'http://postalpincode.in/api/pincode/'+$(this).val(),
-    type:'GET'
+    url:'/user/postalpincode',
+    contentType:'application/json',
+    type:'POST',
+    data:JSON.stringify({pincode:$(this).val()})
   }).done(function(result)
   {
     console.log(result);
@@ -35,7 +36,8 @@ $('profileForm #pincode').on('change',function(e)
   {
     console.log(error);
   });
-})
+});
+
 function Reply()
 {
   reply=$('.reply');
@@ -185,7 +187,8 @@ comment.on('click',function(e)
 
 button.on('click',function(e)
 {
-  $(this).toggleClass('below');
+  $(this).toggleClass('pointing');
+  $(this).toggleClass('pointing below');
   x+=$(this).val();
   y+=$(this).val();
   z+=$(this).val();
